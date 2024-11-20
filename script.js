@@ -1,5 +1,5 @@
 // Variables
-let ticketNumbers = Array.from({ length: 200 }, (_, i) => i + 1);
+let ticketNumbers;
 let results = JSON.parse(localStorage.getItem("results")) || [];
 
 const numEl = document.querySelector(".number");
@@ -12,6 +12,15 @@ const resultsSection = document.querySelector(".results");
 function init() {
   const resultItemEls = document.querySelectorAll(".results .row.body");
   resultItemEls.forEach((item) => item.remove());
+
+  // Update ticket numbers
+  ticketNumbers = Array.from({ length: 200 }, (_, i) => i + 1);
+
+  results.forEach((result) => {
+    ticketNumbers = ticketNumbers.filter((num) => num !== result.ticketNumber);
+  });
+
+  console.log(ticketNumbers);
 
   if (!results.length) {
     resultsSection.style.display = "none";
@@ -79,6 +88,9 @@ async function Lottery() {
 
 function addToResult(number, results) {
   resultsSection.style.display = "block";
+  ticketNumbers = ticketNumbers.filter((num) => num !== number);
+
+  console.log(ticketNumbers);
 
   const newResult = {
     index: results?.at(-1)?.index + 1 || 1,
@@ -140,6 +152,7 @@ resetEl.addEventListener("click", () => {
   numEl.classList.add("hide");
 
   results = [];
+  ticketNumbers;
   init();
   localStorage.removeItem("results");
 });

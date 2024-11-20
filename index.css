@@ -191,6 +191,7 @@ button {
   font-weight: 700;
   margin-top: 2rem;
   overflow: auto;
+  max-height: 500px;
 }
 .results-container .row.head {
   text-transform: uppercase;
@@ -200,7 +201,7 @@ button {
   font-size: 2.35rem;
 }
 .results-container .row {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid rgba(0 0 0 /0.15);
   padding: 1.5rem 0;
   display: grid;
   min-width: 480px;
