@@ -202,8 +202,10 @@ button {
   border-bottom: 1px solid #ccc;
   padding: 1.5rem 0;
   display: grid;
-  grid-template-columns: 300px 300px;
+  min-width: 425px;
+  grid-template-columns: 1fr 1fr;
 }
+
 /* .results-container .row:hover {
   background-color: #ddd;
 } */
