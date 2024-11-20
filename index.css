@@ -203,7 +203,7 @@ button {
   border-bottom: 1px solid #ccc;
   padding: 1.5rem 0;
   display: grid;
-  min-width: 600px;
+  min-width: 480px;
   grid-template-columns: 1fr 1fr;
 }
 
