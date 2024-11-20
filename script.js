@@ -43,6 +43,7 @@ async function Lottery() {
   isSpinning = true;
 
   resetEl.classList.add("disabled");
+  btnEl.classList.add("disabled");
 
   let randNum;
 
@@ -69,6 +70,7 @@ async function Lottery() {
   }
   isSpinning = false;
   results.length && resetEl.classList.remove("disabled");
+  btnEl.classList.remove("disabled");
   addToResult(ticketNumbers[randNum], results);
 }
 
