@@ -109,7 +109,7 @@ button {
   min-width: 0;
   margin: 0;
 }
-.reset.disabled {
+.disabled {
   opacity: 0.3;
   pointer-events: none;
 }
