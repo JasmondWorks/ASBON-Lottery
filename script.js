@@ -12,6 +12,7 @@ const resultsSection = document.querySelector(".results");
 function init() {
   const resultItemEls = document.querySelectorAll(".results .row.body");
   resultItemEls.forEach((item) => item.remove());
+  btnEl.classList.remove("disabled");
 
   // Update ticket numbers
   ticketNumbers = Array.from({ length: 200 }, (_, i) => i + 1);
@@ -28,7 +29,7 @@ function init() {
   }
   if (results.length) {
     results.forEach((result) => {
-      const html = `<div class="row body">
+      const html = `<div class="row">
           <div>${result.index}</div>
           <div>${result.ticketNumber}</div>
         </div>`;
@@ -89,6 +90,8 @@ async function Lottery() {
 function addToResult(number, results) {
   resultsSection.style.display = "block";
   ticketNumbers = ticketNumbers.filter((num) => num !== number);
+
+  if (ticketNumbers.length === 1) btnEl.classList.add("disabled");
 
   console.log(ticketNumbers);
 
