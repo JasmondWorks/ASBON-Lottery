@@ -103,6 +103,7 @@ button {
 
 .reset {
   border: 2px solid #87c127;
+  background-color: transparent;
   color: #000;
   width: fit-content;
   min-width: 0;
