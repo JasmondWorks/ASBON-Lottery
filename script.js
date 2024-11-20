@@ -29,7 +29,7 @@ function init() {
   }
   if (results.length) {
     results.forEach((result) => {
-      const html = `<div class="row">
+      const html = `<div class="row body">
           <div>${result.index}</div>
           <div>${result.ticketNumber}</div>
         </div>`;
