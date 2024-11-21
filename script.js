@@ -15,7 +15,7 @@ function init() {
   btnEl.classList.remove("disabled");
 
   // Update ticket numbers
-  ticketNumbers = Array.from({ length: 200 }, (_, i) => i + 1);
+  ticketNumbers = Array.from({ length: 10 }, (_, i) => i + 1);
 
   results.forEach((result) => {
     ticketNumbers = ticketNumbers.filter((num) => num !== result.ticketNumber);
