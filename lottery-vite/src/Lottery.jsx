@@ -16,6 +16,7 @@ function Lottery({ session, onReset }) {
   const [showConfetti, setShowConfetti] = useState(false);
   const [number, setNumber] = useState("");
   const [showNumber, setShowNumber] = useState(false);
+  const [showResultsModal, setShowResultsModal] = useState(false);
 
   const drumRollRef = useRef(new Audio("/drum-roll-sound-effect.mp3"));
   const crashRef = useRef(new Audio("/crash.mp3"));
@@ -68,7 +69,9 @@ function Lottery({ session, onReset }) {
     <div className="content-wrapper">
       <header className="header">
         <div className="container">
-          <img src={session.logo || "/asbon.png"} alt="logo" />
+          {session.logo && (
+            <img src={session.logo || "/asbon.png"} alt="logo" />
+          )}
           <button className="btn reset" onClick={reset}>
             Reset
           </button>
@@ -81,10 +84,8 @@ function Lottery({ session, onReset }) {
             Tickets remaining: {ticketNumbers.length} /{" "}
             {session.participants || 150}
           </div>
-          {session.logo ? (
+          {session.logo && (
             <img className="jack" src={session.logo} alt="Logo" />
-          ) : (
-            <img className="jack" src="/asbon-logo.png" alt="Jackpot" />
           )}
           <h1 className={`number ${showNumber ? "" : "hide"}`}>{number}</h1>
           <button
@@ -94,35 +95,53 @@ function Lottery({ session, onReset }) {
           >
             Spin
           </button>
+          <button
+            className="btn neutral"
+            onClick={() => setShowResultsModal(true)}
+          >
+            View Results
+          </button>
         </div>
       </div>
-      {results.length > 0 && (
-        <section className="results">
-          <div className="container">
-            <h1>Results</h1>
-            <div className="results-container">
-              <div className="row head">
-                <div>Index</div>
-                <div>Ticket number</div>
-              </div>
-              {results.map((result) => (
-                <div key={result.index} className="row body">
-                  <div>{result.index}</div>
-                  <div>{result.ticketNumber}</div>
+      {session.organizationName && (
+        <footer className="footer">
+          <div>
+            <p>By {session.organizationName}</p>
+          </div>
+        </footer>
+      )}
+      {showResultsModal && (
+        <div
+          className="modal-overlay"
+          onClick={() => setShowResultsModal(false)}
+        >
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="modal-close"
+              onClick={() => setShowResultsModal(false)}
+            >
+              ×
+            </button>
+            <h2>Results</h2>
+            <div className="results">
+              <div className="container">
+                <div className="results-container">
+                  <div className="row head">
+                    <div>Index</div>
+                    <div>Ticket number</div>
+                  </div>
+                  {results.map((result) => (
+                    <div key={result.index} className="row body">
+                      <div>{result.index}</div>
+                      <div>{result.ticketNumber}</div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
-        </section>
-      )}
-      <footer className="footer">
-        <div>
-          <p>
-            {session.organizationName ||
-              "ASBON - Association of Small Business Owners Nigeria"}
-          </p>
         </div>
-      </footer>
+      )}
       {showConfetti && <Confetti />}
     </div>
   );

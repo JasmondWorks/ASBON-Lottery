@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Lottery from "./Lottery";
+import { FaEye } from "react-icons/fa";
 
 function SessionForm({ onSubmit }) {
   const [title, setTitle] = useState("");
@@ -37,9 +38,7 @@ function SessionForm({ onSubmit }) {
       participants: participants ? parseInt(participants) : 150,
       logo,
       theme,
-      organizationName:
-        organizationName.trim() ||
-        "ASBON - Association of Small Business Owners Nigeria",
+      organizationName: organizationName.trim(),
     };
     localStorage.setItem("session", JSON.stringify(session));
     onSubmit(session);
@@ -47,17 +46,23 @@ function SessionForm({ onSubmit }) {
 
   return (
     <div className="content-wrapper">
-      <header className="header">
-        <div className="container">
-          <img src="/asbon.png" alt="asbon logo" />
-        </div>
-      </header>
       <div className="jack-box">
         <div className="container">
           <h1 className="title">Start New Lottery Session</h1>
           <form onSubmit={handleSubmit} className="session-form">
             <div className="form-group">
-              <label>Title (required):</label>
+              <label>
+                Title{" "}
+                <span
+                  style={{
+                    color: "red",
+                    fontWeight: "800",
+                    transform: "translateY(-2px)",
+                  }}
+                >
+                  *
+                </span>
+              </label>
               <input
                 type="text"
                 value={title}
@@ -67,8 +72,20 @@ function SessionForm({ onSubmit }) {
               />
             </div>
             <div className="form-group">
-              <label>Organization Name:</label>
+              <label>
+                Organization Name{" "}
+                <span
+                  style={{
+                    color: "red",
+                    fontWeight: "800",
+                    transform: "translateY(-2px)",
+                  }}
+                >
+                  *
+                </span>
+              </label>
               <input
+                required
                 type="text"
                 value={organizationName}
                 onChange={(e) => setOrganizationName(e.target.value)}
@@ -77,8 +94,20 @@ function SessionForm({ onSubmit }) {
               />
             </div>
             <div className="form-group">
-              <label>Number of Participants (optional, default 150):</label>
+              <label>
+                Number of Participants{" "}
+                <span
+                  style={{
+                    color: "red",
+                    fontWeight: "800",
+                    transform: "translateY(-2px)",
+                  }}
+                >
+                  *
+                </span>
+              </label>
               <input
+                required
                 type="number"
                 value={participants}
                 onChange={(e) => setParticipants(e.target.value)}
@@ -109,10 +138,23 @@ function SessionForm({ onSubmit }) {
                 value={theme}
                 onChange={(e) => setTheme(e.target.value)}
                 className="form-input"
-                style={{ height: "50px" }}
+                style={{
+                  height: "50px",
+                  padding: "0",
+                  background: "transparent",
+                }}
               />
             </div>
-            <div className="btn-box">
+            <div
+              className="btn-box"
+              style={{
+                gridColumn: "1/-1",
+                display: "flex",
+                gap: "1rem",
+                justifyContent: "center",
+                flexWrap: "wrap",
+              }}
+            >
               <button type="submit" className="btn primary">
                 Start Session
               </button>
@@ -120,18 +162,15 @@ function SessionForm({ onSubmit }) {
                 type="button"
                 onClick={() => setShowModal(true)}
                 className="btn primary"
+                style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}
               >
+                <FaEye />
                 Preview
               </button>
             </div>
           </form>
         </div>
       </div>
-      <footer className="footer">
-        <div>
-          <p>ASBON - Association of Small Business Owners Nigeria</p>
-        </div>
-      </footer>
       {showModal && (
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -139,18 +178,18 @@ function SessionForm({ onSubmit }) {
               ×
             </button>
             <h2>Preview</h2>
-            <Lottery
-              session={{
-                title: title || "Sample Title",
-                participants: participants ? parseInt(participants) : 150,
-                logo: logo,
-                theme,
-                organizationName:
-                  organizationName.trim() ||
-                  "ASBON - Association of Small Business Owners Nigeria",
-              }}
-              onReset={() => {}}
-            />
+            <div style={{ pointerEvents: "none" }}>
+              <Lottery
+                session={{
+                  title: title || "Sample Title",
+                  participants: participants ? parseInt(participants) : 150,
+                  logo: logo,
+                  theme,
+                  organizationName: organizationName.trim(),
+                }}
+                onReset={() => {}}
+              />
+            </div>
           </div>
         </div>
       )}
