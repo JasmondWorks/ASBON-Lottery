@@ -66,41 +66,46 @@ function Lottery({ session, onReset }) {
   };
 
   return (
-    <div className="content-wrapper">
-      <header className="header">
-        <div className="container">
-          {session.logo && (
-            <img src={session.logo || "/asbon.png"} alt="logo" />
-          )}
-          <button className="btn reset" onClick={reset}>
-            Reset
-          </button>
-        </div>
-      </header>
-      <div className="jack-box">
-        <div className="container">
-          <h1 className="title">{session.title}</h1>
-          <div className="tag">
-            Tickets remaining: {ticketNumbers.length} /{" "}
-            {session.participants || 150}
+    <div
+      className="content-wrapper"
+      style={{ display: "grid", gridTemplateRows: "1fr auto" }}
+    >
+      <div>
+        <header className="header">
+          <div className="container">
+            {session.logo && (
+              <img src={session.logo || "/asbon.png"} alt="logo" />
+            )}
+            <button className="btn reset" onClick={reset}>
+              Reset
+            </button>
           </div>
-          {session.logo && (
-            <img className="jack" src={session.logo} alt="Logo" />
-          )}
-          <h1 className={`number ${showNumber ? "" : "hide"}`}>{number}</h1>
-          <button
-            className="btn primary"
-            onClick={spin}
-            disabled={isSpinning || ticketNumbers.length === 0}
-          >
-            Spin
-          </button>
-          <button
-            className="btn neutral"
-            onClick={() => setShowResultsModal(true)}
-          >
-            View Results
-          </button>
+        </header>
+        <div className="jack-box">
+          <div className="container">
+            <h1 className="title">{session.title}</h1>
+            <div className="tag">
+              Tickets remaining: {ticketNumbers.length} /{" "}
+              {session.participants || 150}
+            </div>
+            {session.logo && (
+              <img className="jack" src={session.logo} alt="Logo" />
+            )}
+            <h1 className={`number ${showNumber ? "" : "hide"}`}>{number}</h1>
+            <button
+              className="btn primary"
+              onClick={spin}
+              disabled={isSpinning || ticketNumbers.length === 0}
+            >
+              Spin
+            </button>
+            <button
+              className="btn neutral"
+              onClick={() => setShowResultsModal(true)}
+            >
+              View Results
+            </button>
+          </div>
         </div>
       </div>
       {session.organizationName && (

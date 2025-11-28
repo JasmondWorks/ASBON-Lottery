@@ -171,10 +171,6 @@ button {
 
 .footer {
   padding: 0 2rem;
-  margin-top: auto;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
   background-color: #f5f5f5;
 }
 .footer .organization-name {
