@@ -69,6 +69,7 @@ function SessionForm({ onSubmit }) {
                 onChange={(e) => setTitle(e.target.value)}
                 required
                 className="form-input"
+                placeholder="E.g Thanksgiving giveaway"
               />
             </div>
             <div className="form-group">
@@ -89,7 +90,7 @@ function SessionForm({ onSubmit }) {
                 type="text"
                 value={organizationName}
                 onChange={(e) => setOrganizationName(e.target.value)}
-                placeholder="e.g., ASBON - Association of Small Business Owners Nigeria"
+                placeholder="E.g Google"
                 className="form-input"
               />
             </div>
@@ -116,7 +117,7 @@ function SessionForm({ onSubmit }) {
               />
             </div>
             <div className="form-group">
-              <label>Organization Logo (optional):</label>
+              <label>Organization Logo:</label>
               <input
                 type="file"
                 accept="image/*"
