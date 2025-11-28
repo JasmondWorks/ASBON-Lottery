@@ -45,7 +45,7 @@ html {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
-  padding-block: 2rem;
+  padding-block: 1.35rem;
 }
 .header .container {
   display: flex;
@@ -170,13 +170,15 @@ button {
 }
 
 .footer {
-  font-weight: 700;
   padding: 0 2rem;
   margin-top: auto;
   position: fixed;
   bottom: 0;
   width: 100%;
   background-color: #f5f5f5;
+}
+.footer .organization-name {
+  font-weight: 700;
 }
 .footer div {
   padding: 2rem;

@@ -74,28 +74,6 @@ function SessionForm({ onSubmit }) {
             </div>
             <div className="form-group">
               <label>
-                Organization Name{" "}
-                <span
-                  style={{
-                    color: "red",
-                    fontWeight: "800",
-                    transform: "translateY(-2px)",
-                  }}
-                >
-                  *
-                </span>
-              </label>
-              <input
-                required
-                type="text"
-                value={organizationName}
-                onChange={(e) => setOrganizationName(e.target.value)}
-                placeholder="E.g Google"
-                className="form-input"
-              />
-            </div>
-            <div className="form-group">
-              <label>
                 Number of Participants{" "}
                 <span
                   style={{
@@ -116,6 +94,29 @@ function SessionForm({ onSubmit }) {
                 className="form-input"
               />
             </div>
+            <div className="form-group">
+              <label>
+                Organization Name{" "}
+                {/* <span
+                  style={{
+                    color: "red",
+                    fontWeight: "800",
+                    transform: "translateY(-2px)",
+                  }}
+                >
+                  *
+                </span> */}
+              </label>
+              <input
+                // required
+                type="text"
+                value={organizationName}
+                onChange={(e) => setOrganizationName(e.target.value)}
+                placeholder="E.g Google"
+                className="form-input"
+              />
+            </div>
+
             <div className="form-group">
               <label>Organization Logo:</label>
               <input

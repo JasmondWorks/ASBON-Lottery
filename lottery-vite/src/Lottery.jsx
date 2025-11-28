@@ -106,7 +106,12 @@ function Lottery({ session, onReset }) {
       {session.organizationName && (
         <footer className="footer">
           <div>
-            <p>By {session.organizationName}</p>
+            <p>
+              By{" "}
+              <span className="organization-name">
+                {session.organizationName}
+              </span>
+            </p>
           </div>
         </footer>
       )}
