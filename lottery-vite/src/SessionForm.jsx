@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Lottery from "./Lottery";
 
 function SessionForm({ onSubmit }) {
@@ -8,6 +8,11 @@ function SessionForm({ onSubmit }) {
   const [logoPreview, setLogoPreview] = useState("");
   const [theme, setTheme] = useState("#87c127");
   const [organizationName, setOrganizationName] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty("--theme-color", theme);
+  }, [theme]);
 
   const handleLogoChange = (e) => {
     const file = e.target.files[0];
@@ -107,9 +112,18 @@ function SessionForm({ onSubmit }) {
                 style={{ height: "50px" }}
               />
             </div>
-            <button type="submit" className="btn primary">
-              Start Session
-            </button>
+            <div className="btn-box">
+              <button type="submit" className="btn primary">
+                Start Session
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowModal(true)}
+                className="btn primary"
+              >
+                Preview
+              </button>
+            </div>
           </form>
         </div>
       </div>
@@ -118,6 +132,28 @@ function SessionForm({ onSubmit }) {
           <p>ASBON - Association of Small Business Owners Nigeria</p>
         </div>
       </footer>
+      {showModal && (
+        <div className="modal-overlay" onClick={() => setShowModal(false)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close" onClick={() => setShowModal(false)}>
+              ×
+            </button>
+            <h2>Preview</h2>
+            <Lottery
+              session={{
+                title: title || "Sample Title",
+                participants: participants ? parseInt(participants) : 150,
+                logo: logo,
+                theme,
+                organizationName:
+                  organizationName.trim() ||
+                  "ASBON - Association of Small Business Owners Nigeria",
+              }}
+              onReset={() => {}}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

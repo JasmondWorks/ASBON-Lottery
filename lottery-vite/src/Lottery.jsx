@@ -69,11 +69,7 @@ function Lottery({ session, onReset }) {
       <header className="header">
         <div className="container">
           <img src={session.logo || "/asbon.png"} alt="logo" />
-          <button
-            className="btn reset"
-            onClick={reset}
-            disabled={results.length === 0}
-          >
+          <button className="btn reset" onClick={reset}>
             Reset
           </button>
         </div>
