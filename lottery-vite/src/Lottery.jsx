@@ -1,5 +1,6 @@
 import { useState, useRef, useMemo } from "react";
 import Confetti from "react-confetti";
+import Modal from "./Modal";
 
 function Lottery({ session, onReset }) {
   const [results, setResults] = useState(
@@ -64,6 +65,18 @@ function Lottery({ session, onReset }) {
       onReset();
     }
   };
+  const clearResults = () => {
+    if (
+      window.confirm(
+        "Are you sure you want to clear all results? This cannot be undone"
+      )
+    ) {
+      setResults([]);
+      localStorage.removeItem("results");
+      setShowConfetti(false);
+      setShowNumber(false);
+    }
+  };
 
   return (
     <div
@@ -76,9 +89,14 @@ function Lottery({ session, onReset }) {
             {session.logo && (
               <img src={session.logo || "/asbon.png"} alt="logo" />
             )}
-            <button className="btn reset" onClick={reset}>
-              Reset
-            </button>
+            <div className="header-btn-container">
+              <button className="btn btn--reset" onClick={reset}>
+                Reset
+              </button>
+              <button className="btn btn--clear-results" onClick={clearResults}>
+                Clear results
+              </button>
+            </div>
           </div>
         </header>
         <div className="jack-box">
@@ -120,7 +138,27 @@ function Lottery({ session, onReset }) {
           </div>
         </footer>
       )}
-      {showResultsModal && (
+      <Modal
+        isOpen={showResultsModal}
+        onClose={() => setShowResultsModal(false)}
+      >
+        <h2>Results</h2>
+        <div className="results">
+          <div className="results-container">
+            <div className="row head">
+              <div>Index</div>
+              <div>Ticket number</div>
+            </div>
+            {results.map((result) => (
+              <div key={result.index} className="row body">
+                <div>{result.index}</div>
+                <div>{result.ticketNumber}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </Modal>
+      {/* {showResultsModal && (
         <div
           className="modal-overlay"
           onClick={() => setShowResultsModal(false)}
@@ -151,7 +189,7 @@ function Lottery({ session, onReset }) {
             </div>
           </div>
         </div>
-      )}
+      )} */}
       {showConfetti && <Confetti />}
     </div>
   );

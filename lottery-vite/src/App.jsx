@@ -9,6 +9,8 @@ function App() {
     return savedSession ? JSON.parse(savedSession) : null;
   });
 
+  console.log(session);
+
   useEffect(() => {
     const lsSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><rect width="32" height="32" fill="#87c127"/><text x="16" y="22" font-size="16" font-family="Arial" text-anchor="middle" fill="white">LS</text></svg>`;
     const lsDataUrl = `data:image/svg+xml;base64,${btoa(lsSvg)}`;
