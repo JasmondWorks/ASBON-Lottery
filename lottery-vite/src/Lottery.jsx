@@ -1,6 +1,5 @@
 import { useState, useRef, useMemo } from "react";
 import Confetti from "react-confetti";
-import Modal from "./Modal";
 
 function Lottery({ session, onReset }) {
   const [results, setResults] = useState(
@@ -138,7 +137,7 @@ function Lottery({ session, onReset }) {
           </div>
         </footer>
       )}
-      <Modal
+      {/* <Modal
         isOpen={showResultsModal}
         onClose={() => setShowResultsModal(false)}
       >
@@ -157,8 +156,8 @@ function Lottery({ session, onReset }) {
             ))}
           </div>
         </div>
-      </Modal>
-      {/* {showResultsModal && (
+      </Modal> */}
+      {showResultsModal && (
         <div
           className="modal-overlay"
           onClick={() => setShowResultsModal(false)}
@@ -189,7 +188,7 @@ function Lottery({ session, onReset }) {
             </div>
           </div>
         </div>
-      )} */}
+      )}
       {showConfetti && <Confetti />}
     </div>
   );
